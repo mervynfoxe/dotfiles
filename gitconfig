@@ -1,0 +1,48 @@
+[core]
+	excludesfile = /Users/alex/.gitignore_global
+	editor = vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+	conflicts = diff --name-only --diff-filter=U
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	lc = log ORIG_HEAD.. --stat --no-merges
+	lg = log --graph --full-history --color --pretty=format:'%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%cr) %x1b[34m%x1b[1m<%an>%x1b[0m' --abbrev-commit --date=relative
+	ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	changes = diff --name-status -r
+	diffstat = diff --stat -r
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whatis = show -s --pretty='tformat:%x1b[33m%h %x1b[0m(%s, %x1b[32m%ad%x1b[0m)' -p --date=short
+[color]
+	ui = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red
+	new = green
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = cyan
+[push]
+	default = simple
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

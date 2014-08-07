@@ -1,0 +1,9 @@
+
+[projects/python/esix]
+checkout = git clone 'git@bitbucket.org:AMV_Ph34r/python-esix.git' 'esix'
+
+[projects/python/worldcup]
+checkout = git clone 'git@github.com:AMVPh34r/worldcup.git' 'worldcup'
+
+[/var/www/html/chatlog-viewer]
+checkout = git clone 'amv-ph34r.com:repo/chatlog-viewer.git' 'chatlog-viewer'
