@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################
-# .make.sh
+# makesymlinks.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
@@ -19,6 +19,9 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in *; do
+    if [[ $file == "makesymlinks.sh" ]]; then
+        continue
+    fi
     echo ".$file"
     if [[ -f ~/.$file && ! -L ~/.$file ]]; then
         echo "Moving ~/.$file to $olddir..."
