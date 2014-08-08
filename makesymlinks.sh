@@ -30,6 +30,8 @@ for file in *; do
     if [[ ! -L ~/.$file ]]; then
         echo "Creating symlink to $file..."
         ln -s $dir/$file ~/.$file
+    else
+        echo "Symlink already exists"
     fi
     echo ''
 done
