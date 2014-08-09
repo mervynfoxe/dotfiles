@@ -64,3 +64,18 @@ function upls() {
 	pwd;
 	ls;
 }
+
+# In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
+function git-branch-status() {
+    git remote update
+    echo ''
+    git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads | \
+    while read local remote
+    do
+        [ -z "$remote" ] && continue
+        git rev-list --left-right ${local}...${remote} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
+        LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
+        RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
+        echo "$local (ahead $LEFT_AHEAD) | (behind $RIGHT_AHEAD) $remote"
+    done
+}
