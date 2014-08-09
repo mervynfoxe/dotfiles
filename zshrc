@@ -19,7 +19,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/loca
 autoload -U colors && colors
 PS1="________________________________________________________________________________
 | %{$fg[cyan]%}%n%{$reset_color%}@%{$fg[green]%}%m:%{$fg[yellow]%}%~ %{$reset_color%}
-| => "
+| %{$fg[green]%}=>%{$reset_color%} "
 
 # Define aliases
 alias please='sudo $(history -p !!)'
