@@ -19,7 +19,7 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in *; do
-    if [[ $file == "makesymlinks.sh" ]]; then
+    if [[ $file = "makesymlinks.sh" ]]; then
         continue
     fi
     echo ".$file"
