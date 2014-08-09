@@ -12,6 +12,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Add MacPorts and apache/mysql to the PATH
+export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+
 # Set colors and prompt style
 autoload -U colors && colors
 PS1="________________________________________________________________________________
