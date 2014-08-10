@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gnzh"
+ZSH_THEME="amuse"
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -53,6 +53,10 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# Set shell prompt
+PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)
+$ '
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
