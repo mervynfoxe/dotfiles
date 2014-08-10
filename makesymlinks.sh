@@ -23,11 +23,9 @@ for file in *; do
         continue
     fi
     echo ".$file"
-    if [[ -f ~/.$file && ! -L ~/.$file ]]; then
+    if [[ ! -L ~/.$file ]]; then
         echo "Moving ~/.$file to $olddir..."
         mv ~/.$file $olddir/
-    fi
-    if [[ ! -L ~/.$file ]]; then
         echo "Creating symlink to $file..."
         ln -s $dir/$file ~/.$file
     else
