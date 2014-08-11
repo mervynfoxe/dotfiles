@@ -55,7 +55,8 @@ export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/loca
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Set shell prompt
-PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)
+PROMPT='
+%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)
 $ '
 
 # You may need to manually set your language environment
