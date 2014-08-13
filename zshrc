@@ -94,6 +94,9 @@ alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 
 alias gbs='git-branch-status'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
+# Remove aliases defined elsewhere that we don't want
+unalias sl
+
 # Go up directory tree X times
 function up() {
 	counter="$@"
