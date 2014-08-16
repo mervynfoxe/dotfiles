@@ -55,6 +55,11 @@ export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/loca
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Set shell prompt
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[magenta]%}<"
+ZSH_THEME_GIT_PROMPT_DIRTY=">%{$fg[red]%}!"
+ZSH_THEME_GIT_PROMPT_UNTRACKED=">%{$fg[green]%}?"
+ZSH_THEME_GIT_PROMPT_CLEAN=">"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 PROMPT='
 %{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
 $ '
