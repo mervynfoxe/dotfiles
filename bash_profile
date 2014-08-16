@@ -18,8 +18,8 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Aliases defined below
 alias please='sudo $(history -p !!)'
-alias ls='ls -AGph'
-alias ll='ls -AGlph'
+alias ls='ls -Ap --color=auto'
+alias ll='ls -Alp --color=auto'
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
