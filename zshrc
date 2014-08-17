@@ -98,7 +98,6 @@ alias egrep='egrep --color=auto'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias gbs='git-branch-status'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
-alias unmount='diskutil unmountDisk'
 
 # Remove aliases defined elsewhere that we don't want
 unalias sl
