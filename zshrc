@@ -88,7 +88,6 @@ $ '
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias please='sudo $(history -p !!)'
 alias ls='ls -Ap --color=auto'
 alias ll='ls -Alp --color=auto'
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
