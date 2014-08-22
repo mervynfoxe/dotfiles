@@ -1,68 +1,87 @@
-##
-# General setup
-##
+SSH_ENV=$HOME/.ssh/environment
+   
+# start the ssh-agent
+function start_agent {
+    echo "Initializing new SSH agent..."
+    # spawn ssh-agent
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add
+}
+   
+#if [ -f "${SSH_ENV}" ]; then
+#     . "${SSH_ENV}" > /dev/null
+#     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+#        start_agent;
+#    }
+#else
+#    start_agent;
+#fi
 
-# Add MacPorts and apache/mysql to the PATH
-export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
-
-# Set up bash completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
-fi
-
-# Set prompt colors
+# Set some custom stuff to make the terminal look better
 export PS1="________________________________________________________________________________\n| \[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\] \n| \[\033[32m\]=>\[\033[m\] "
 export PS2="| \[\033[32m\]==>\[\033[m\] "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Call .pythonrc when Python is started
+export PYTHONSTARTUP=~/.pythonrc
+
 # Aliases defined below
 alias please='sudo $(history -p !!)'
-alias ls='ls -Ap --color=auto'
-alias ll='ls -Alp --color=auto'
+alias ls='ls -Aph --group-directories-first --color=auto'
+alias ll='ls -Alph --group-directories-first --color=auto'
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
-alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hidehidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias ssh-start='sudo service ssh start'
+alias ssh-stop='sudo service ssh stop'
+alias ssh-rs='sudo service ssh restart'
+# Aliases for ADB stuff
+alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
+alias adb-listapps='adb shell pm list packages'
+alias adb-tcpip='adb tcpip 5555'
+alias adb-ifconfig='adb shell netcfg'
 
 ##
 # Custom functions for doing cool things
 ##
 # Go up directory tree X times
 function up() {
-	counter="$@"
-	if [[ -z $counter ]]; then
-		counter=1
-	fi
-	if [ $counter -eq $counter 2> /dev/null ]; then
-		until [[ $counter -lt 1 ]]; do
-			cd ..
-			let counter-=1
-		done
-	else
-		echo "usage: up [NUMBER]"
-		return 1
-	fi
+    counter="$@"
+    if [[ -z $counter ]]; then
+        counter=1
+    fi
+    if [ $counter -eq $counter 2> /dev/null ]; then
+        until [[ $counter -lt 1 ]]; do
+            cd ..
+            let counter-=1
+        done
+    else
+        echo "usage: up [NUMBER]"
+        return 1
+    fi
 }
 
 # Make and cd into a directory
 function mkcd() {
-	mkdir -p "$1" && cd "$1";
+    mkdir -p "$1" && cd "$1";
 }
 
 # cd into a directory and list its contents
 function cdls() {
-	cd "$1" && ls;
+    cd "$1" && ls;
 }
 
 # Go up X directories and then list the new directory's contents
 function upls() {
-	up $1;
-	pwd;
-	ls;
+    up $1;
+    pwd;
+    ls;
 }
 
 # In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
