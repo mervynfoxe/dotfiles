@@ -24,9 +24,9 @@ for file in *; do
     fi
     echo ".$file"
     if [[ ! -L ~/.$file ]]; then
-        echo "Moving ~/.$file to $olddir..."
+        echo "Moving any existing file to ${olddir}..."
         mv ~/.$file $olddir/
-        echo "Creating symlink to $file..."
+        echo "Creating symlink at ~/.${file}..."
         ln -s $dir/$file ~/.$file
     else
         echo "Symlink already exists"
