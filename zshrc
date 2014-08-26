@@ -95,6 +95,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
+alias fcount='ls -A1 | wc -l'
 alias gbs='git-branch-status'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 

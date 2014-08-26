@@ -41,6 +41,7 @@ alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 
 alias ssh-start='sudo service ssh start'
 alias ssh-stop='sudo service ssh stop'
 alias ssh-rs='sudo service ssh restart'
+alias fcount='ls -A1 | wc -l'
 # Aliases for ADB stuff
 alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
 alias adb-listapps='adb shell pm list packages'
