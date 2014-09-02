@@ -1,4 +1,1 @@
 syntax: glob
-
-*~
-.DS_Store
