@@ -99,9 +99,6 @@ alias fcount='ls -A1 | wc -l'
 alias gbs='git-branch-status'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
-# Remove aliases defined elsewhere that we don't want
-unalias sl
-
 # Go up directory tree X times
 function up() {
 	counter="$@"
