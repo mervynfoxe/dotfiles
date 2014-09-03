@@ -8,6 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles.bak             # old dotfiles backup directory
+ignore="makesymlinks.sh icon.png" # file names to ignore and not create symlinks for
 ##########
 
 # create dotfiles_old in homedir
@@ -19,7 +20,7 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in *; do
-    if [[ $file = "makesymlinks.sh" ]]; then
+    if grep -q $file $ignore; then
         continue
     fi
     echo ".$file"
