@@ -61,7 +61,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED=">%{$fg[green]%}?"
 ZSH_THEME_GIT_PROMPT_CLEAN=">"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 PROMPT='
-%{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
+%{$fg[green]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
 $ '
 
 # You may need to manually set your language environment
