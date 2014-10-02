@@ -47,6 +47,9 @@ alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
 alias adb-listapps='adb shell pm list packages'
 alias adb-tcpip='adb tcpip 5555'
 alias adb-ifconfig='adb shell netcfg'
+# Git aliases
+alias gpaa='git remote | xargs -L1 git push --all'
+alias gpaat='git remote | xargs -L1 git push --all && git remote | xargs -L1 git push --tags'
 
 ##
 # Custom functions for doing cool things
