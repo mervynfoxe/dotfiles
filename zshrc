@@ -64,6 +64,9 @@ PROMPT='
 %{$fg[green]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
 $ '
 
+# Set wildcard (*) to affect dotfiles
+setopt -s dotglob
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
