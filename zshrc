@@ -65,7 +65,7 @@ PROMPT='
 $ '
 
 # Set wildcard (*) to affect dotfiles
-setopt -s dotglob
+setopt dotglob
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
