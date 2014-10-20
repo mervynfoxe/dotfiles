@@ -20,6 +20,8 @@ function start_agent {
 #    start_agent;
 #fi
 
+export PATH="$PATH:/home/ale/bin"
+
 # Set some custom stuff to make the terminal look better
 export PS1="________________________________________________________________________________\n| \[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\] \n| \[\033[32m\]=>\[\033[m\] "
 export PS2="| \[\033[32m\]==>\[\033[m\] "

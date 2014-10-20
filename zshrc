@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH"
+export PATH="$PATH:/home/alex/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Set shell prompt
