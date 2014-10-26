@@ -95,7 +95,9 @@ function upls() {
 
 # In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
 function git-branch-status() {
-    git remote update
+    if [[ $1 != '-n' ]]; then
+        git remote update
+    fi
     echo ''
     git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads | \
     while read local remote
