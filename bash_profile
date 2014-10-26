@@ -29,6 +29,9 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # Call .pythonrc when Python is started
 export PYTHONSTARTUP=~/.pythonrc
 
+# Set wildcard (*) to affect dotfiles
+shopt -s dotglob
+
 # Aliases defined below
 alias please='sudo $(history -p !!)'
 alias ls='ls -Aph --group-directories-first --color=auto'
