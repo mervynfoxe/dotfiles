@@ -45,7 +45,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow macports apache2-macports)
+plugins=(git git-extras git-flow)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +100,9 @@ alias egrep='egrep --color=auto'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias fcount='ls -A1 | wc -l'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+alias apache2start='sudo service apache2 start'
+alias apache2stop='sudo service apache2 stop'
+alias apache2rs='sudo service apache2 restart'
 # Git aliases
 alias gbs='git-branch-status'
 alias gpaa='git remote | xargs -L1 git push --all'
