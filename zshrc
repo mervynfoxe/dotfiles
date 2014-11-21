@@ -107,6 +107,9 @@ alias apache2rs='sudo service apache2 restart'
 alias gbs='git-branch-status'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias pycclean='find . -name "*.pyc" -exec rm {} \;'
+alias nethack='telnet nethack.alt.org'
 
 # Go up directory tree X times
 function up() {

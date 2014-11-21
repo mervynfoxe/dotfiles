@@ -58,6 +58,9 @@ alias adb-ifconfig='adb shell netcfg'
 # Git aliases
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias pycclean='find . -name "*.pyc" -exec rm {} \;'
+alias nethack='telnet nethack.alt.org'
 
 ##
 # Custom functions for doing cool things
