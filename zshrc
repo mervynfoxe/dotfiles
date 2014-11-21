@@ -105,8 +105,8 @@ alias apache2stop='sudo service apache2 stop'
 alias apache2rs='sudo service apache2 restart'
 # Git aliases
 alias gbs='git-branch-status'
-alias gpaa='git remote | xargs -L1 git push --all'
-alias gpaat='git remote | xargs -L1 git push --all && git remote | xargs -L1 git push --tags'
+alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
+alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
 
 # Go up directory tree X times
 function up() {
