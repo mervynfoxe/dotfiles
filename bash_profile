@@ -43,24 +43,26 @@ alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
-alias ssh-start='sudo service ssh start'
-alias ssh-stop='sudo service ssh stop'
-alias ssh-rs='sudo service ssh restart'
 alias fcount='ls -A1 | wc -l'
-alias apache2start='sudo service apache2 start'
-alias apache2stop='sudo service apache2 stop'
-alias apache2rs='sudo service apache2 restart'
+alias gbs='git-branch-status'
+alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
+alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias pycclean='find . -name "*.pyc" -exec rm {} \;'
+alias nethack='telnet nethack.alt.org'
 # Aliases for ADB stuff
 alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
 alias adb-listapps='adb shell pm list packages'
 alias adb-tcpip='adb tcpip 5555'
 alias adb-ifconfig='adb shell netcfg'
-# Git aliases
-alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
-alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
-alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
-alias pycclean='find . -name "*.pyc" -exec rm {} \;'
-alias nethack='telnet nethack.alt.org'
+# Linux-specific aliases
+alias ssh-start='sudo service ssh start'
+alias ssh-stop='sudo service ssh stop'
+alias ssh-rs='sudo service ssh restart'
+alias apache2start='sudo service apache2 start'
+alias apache2stop='sudo service apache2 stop'
+alias apache2rs='sudo service apache2 restart'
 
 ##
 # Custom functions for doing cool things
