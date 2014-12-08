@@ -49,6 +49,7 @@ alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push 
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias servethisphp='php -S localhost:8000'
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias nethack='telnet nethack.alt.org'
 # Aliases for ADB stuff
