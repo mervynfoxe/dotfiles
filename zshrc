@@ -105,6 +105,7 @@ alias fcount='ls -A1 | wc -l'
 alias gbs='git-branch-status'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
+alias gcamsg='git add --all; git commit -m'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8000'
