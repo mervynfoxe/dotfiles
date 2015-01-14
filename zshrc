@@ -67,6 +67,9 @@ $ '
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
 
+# Set completion for ssh hosts
+zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
