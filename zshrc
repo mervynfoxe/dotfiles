@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="amuse"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -54,16 +54,8 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/home/alex/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# Set shell prompt
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[magenta]%}<"
-ZSH_THEME_GIT_PROMPT_DIRTY=">%{$fg[red]%}!"
-ZSH_THEME_GIT_PROMPT_UNTRACKED=">%{$fg[green]%}?"
-ZSH_THEME_GIT_PROMPT_CLEAN=">"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-PROMPT='
-%{$fg[green]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
-$ '
-PROMPT2='%_> '
+# Fix for loop prompts
+PROMPT2="%_> "
 
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
