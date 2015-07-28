@@ -132,16 +132,19 @@ function up() {
 		echo "usage: up [NUMBER]"
 		return 1
 	fi
+    return 0
 }
 
 # Make and cd into a directory
 function mkcd() {
 	mkdir -p "$1" && cd "$1";
+    return 0
 }
 
 # cd into a directory and list its contents
 function cdls() {
 	cd "$1" && ls;
+    return 0
 }
 
 # Go up X directories and then list the new directory's contents
@@ -149,6 +152,7 @@ function upls() {
 	up $1;
 	pwd;
 	ls;
+    return 0
 }
 
 # In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
@@ -166,4 +170,5 @@ function git-branch-status() {
         RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
         echo "$local (ahead $LEFT_AHEAD) | (behind $RIGHT_AHEAD) $remote"
     done
+    return 0
 }
