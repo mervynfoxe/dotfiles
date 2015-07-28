@@ -54,7 +54,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/home/alex/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# Fix for loop prompts
+# Fix for prompts
+PROMPT="$(echo -e "$PROMPT")
+$ "
 PROMPT2="%_> "
 
 # Set wildcard (*) to affect dotfiles
