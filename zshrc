@@ -63,6 +63,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 PROMPT='
 %{$fg[green]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%M%{$reset_color%} ➜ %{$fg_bold[green]%}${PWD/#$HOME/~}%{$fg_bold[white]%}%{$reset_color%}$(git_prompt_info)
 $ '
+PROMPT2='%_> '
 
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
@@ -100,7 +101,6 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias fcount='ls -A1 | wc -l'
 alias gbs='git-branch-status'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
