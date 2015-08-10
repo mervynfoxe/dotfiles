@@ -56,6 +56,9 @@ echo "Initializing submodules..."
 git submodule init
 git submodule update --remote --recursive
 
+echo "Installing Powerline fonts..."
+./powerline-fonts/install.sh
+
 echo "Done."
 # Determine shell that called this script
 parent=$(ps $PPID | tail -n 1 | awk "{print \$5}")
