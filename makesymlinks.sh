@@ -8,8 +8,23 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles.bak             # old dotfiles backup directory
-ignore="makesymlinks.sh icon.png" # file names to ignore and not create symlinks for
+ignore=( "icon.png"
+         "makesymlinks.sh"
+         "powerline-fonts" )      # items to ignore when making symlinks
 ##########
+
+array_contains() {
+    local haystack="$1[@]"
+    local needle=$2
+    local found=1
+    for item in "${!haystack}"; do
+        if [[ $item == $needle ]]; then
+            found=0
+            break
+        fi
+    done
+    return $found
+}
 
 # create dotfiles_old in homedir
 if [[ ! -d $olddir ]]; then
@@ -20,14 +35,12 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in *; do
-    if grep -q $file $ignore; then
-        continue
-    fi
+    array_contains ignore $file && continue
     echo ".$file"
     if [[ ! -L ~/.$file ]]; then
-        echo "Moving any existing file to ${olddir}..."
+        echo "Moving ~/.$file to ${olddir}..."
         mv ~/.$file $olddir/
-        echo "Creating symlink at ~/.${file}..."
+        echo "Creating symlink to ${file}..."
         ln -s $dir/$file ~/.$file
     else
         echo "Symlink already exists"

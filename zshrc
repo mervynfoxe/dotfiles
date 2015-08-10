@@ -1,14 +1,28 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#
+# OS detection
+#
+UNAME=`uname`
+CURRENT_OS='Linux'
+DISTRO=''
+OS_VERSION=''
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+if [[ $UNAME == 'Darwin' ]]; then
+    CURRENT_OS='OS X'
+else
+    CURRENT_OS='Linux'
+    if [[ -f /etc/lsb-release ]]; then
+        source /etc/lsb-release
+        DISTRO=$DISTRIB_ID
+        OS_VERSION=$DISTRIB_RELEASE
+    fi
+fi
 
+
+#
+# Configuration for oh-my-zsh
+#
 # Uncomment the following line to use case-sensitive completion.
- CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -26,32 +40,45 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow)
 
-source $ZSH/oh-my-zsh.sh
+#
+# Activate and configure Antigen
+#
+source $HOME/.antigen/antigen.zsh
 
+antigen use oh-my-zsh
+antigen bundle git
+antigen bundle git-extras
+antigen bundle git-flow
+if [[ $CURRENT_OS == 'OS X' ]]; then
+    antigen bundle macports
+    antigen bundle apache2-macports
+fi
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme agnoster
+antigen apply
+
+
+#
 # User configuration
-
-export PATH="$PATH:/home/alex/bin"
+#
+if [[ $CURRENT_OS == 'Linux' ]]; then
+    export PATH="$PATH:/home/alex/bin"
+elif [[ $CURRENT_OS == 'OS X' ]]; then
+    export PATH="/Users/alex/bin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+    # Set up tab completion for Python 2
+    export PYTHONSTARTUP=$HOME/.pythonrc.py
+fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Fix for prompts
@@ -62,35 +89,20 @@ PROMPT2="%_> "
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
 
-# Set completion for ssh hosts
-zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+if [[ $CURRENT_OS == 'Linux' ]]; then
+    # Set completion for ssh hosts
+    zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+elif [[ $CURRENT_OS == 'OS X' ]]; then
+    # Set up tab completion for ssh hosts
+    zstyle -s ':completion:*:hosts' hosts _ssh_config
+    [[ -r ~/.ssh/config ]] && _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/Host[=\t ]//p'))
+    zstyle ':completion:*:hosts' hosts $_ssh_config
+fi
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='ls -Aph --group-directories-first --color=auto'
-alias ll='ls -Alph --group-directories-first --color=auto'
+# Aliases
+#
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
@@ -106,54 +118,74 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8000'
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias nethack='telnet nethack.alt.org'
-# Aliases for ADB stuff
-alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
-alias adb-listapps='adb shell pm list packages'
-alias adb-tcpip='adb tcpip 5555'
-alias adb-ifconfig='adb shell netcfg'
-# Linux-specific aliases
-alias ssh-start='sudo service ssh start'
-alias ssh-stop='sudo service ssh stop'
-alias ssh-rs='sudo service ssh restart'
-alias apache2start='sudo service apache2 start'
-alias apache2stop='sudo service apache2 stop'
-alias apache2rs='sudo service apache2 restart'
+if [[ $CURRENT_OS == 'Linux' ]]; then
+    # Linux-specific aliases
+    alias ls='ls -Aph --group-directories-first --color=auto'
+    alias ll='ls -Alph --group-directories-first --color=auto'
+    alias ssh-start='sudo service ssh start'
+    alias ssh-stop='sudo service ssh stop'
+    alias ssh-rs='sudo service ssh restart'
+    alias apache2start='sudo service apache2 start'
+    alias apache2stop='sudo service apache2 stop'
+    alias apache2restart='sudo service apache2 restart'
+    # Aliases for ADB stuff
+    alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
+    alias adb-listapps='adb shell pm list packages'
+    alias adb-tcpip='adb tcpip 5555'
+    alias adb-ifconfig='adb shell netcfg'
+elif [[ $CURRENT_OS == 'OS X' ]]; then
+    # OSX-specific aliases
+    alias ls='ls -AGph'
+    alias ll='ls -AGlph'
+    alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+    alias hidehidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+    alias unmount='diskutil unmountDisk'
+    alias rmdsstore='find . -name "*.DS_Store" -type f -delete'
+    alias apache2start='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper start'
+    alias apache2stop='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper stop'
+    alias apache2restart='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper restart'
+fi
 
+
+
+#
+# Functions
+#
 # Go up directory tree X times
 function up() {
-	counter="$@"
-	if [[ -z $counter ]]; then
-		counter=1
-	fi
-	if [ $counter -eq $counter 2> /dev/null ]; then
-		until [[ $counter -lt 1 ]]; do
-			cd ..
-			let counter-=1
-		done
-	else
-		echo "usage: up [NUMBER]"
-		return 1
-	fi
+    counter="$@"
+    if [[ -z $counter ]]; then
+        counter=1
+    fi
+    if [ $counter -eq $counter 2> /dev/null ]; then
+        until [[ $counter -lt 1 ]]; do
+            cd ..
+            let counter-=1
+        done
+    else
+        echo "usage: up [NUMBER]"
+        return 1
+    fi
     return 0
 }
 
 # Make and cd into a directory
 function mkcd() {
-	mkdir -p "$1" && cd "$1";
+    mkdir -p "$1" && cd "$1";
     return 0
 }
 
 # cd into a directory and list its contents
 function cdls() {
-	cd "$1" && ls;
+    cd "$1" && ls;
     return 0
 }
 
 # Go up X directories and then list the new directory's contents
 function upls() {
-	up $1;
-	pwd;
-	ls;
+    up $1;
+    pwd;
+    ls;
     return 0
 }
 
@@ -174,3 +206,22 @@ function git-branch-status() {
     done
     return 0
 }
+
+
+if [[ $CURRENT_OS == 'OS X' ]]; then
+    # The following lines were added by compinstall
+
+    zstyle ':completion:*' completer _expand _complete _ignored
+    zstyle ':completion:*' format '%d'
+    zstyle ':completion:*' group-name ''
+    zstyle ':completion:*' menu select=long
+    zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+    zstyle :compinstall filename '/Users/alex/.zshrc'
+
+    autoload -Uz compinit
+    compinit
+    # End of lines added by compinstall
+
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
