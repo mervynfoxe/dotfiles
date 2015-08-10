@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################
-# makesymlinks.sh
+# bootstrap.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
@@ -9,7 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles.bak             # old dotfiles backup directory
 ignore=( "icon.png"
-         "makesymlinks.sh"
+         "bootstrap.sh"
          "powerline-fonts" )      # items to ignore when making symlinks
 ##########
 
@@ -26,14 +26,16 @@ array_contains() {
     return $found
 }
 
-# create dotfiles_old in homedir
+echo "Backing up existing dotfiles..."
+# Create dotfiles_old in homedir
 if [[ ! -d $olddir ]]; then
-    echo "Creating $olddir for backup of any existing dotfiles in ~"
+    echo "Creating '${olddir}'...~"
     mkdir -p $olddir
 fi
 cd $dir
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# Move any existing dotfiles in homedir to dotfiles_old directory
+# then create symlinks
 for file in *; do
     array_contains ignore $file && continue
     echo ".$file"
@@ -49,4 +51,17 @@ for file in *; do
     fi
     echo ''
 done
+
+echo "Initializing submodules..."
+git submodule init
+git submodule update --remote --recursive
+
+echo "Done."
+# Determine shell that called this script
+parent=$(ps $PPID | tail -n 1 | awk "{print \$5}")
+if [[ $parent == "zsh" ]]; then
+    echo "Please run 'source ~/.zshrc' to reload configuration."
+elif [[ $parent == "bash" ]]; then
+    echo "Please run 'source ~/.bashrc' to reload configuration."
+fi
 
