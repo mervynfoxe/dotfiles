@@ -38,8 +38,10 @@ for file in *; do
     array_contains ignore $file && continue
     echo ".$file"
     if [[ ! -L ~/.$file ]]; then
-        echo "Moving ~/.$file to ${olddir}..."
-        mv ~/.$file $olddir/
+        if [[ -f ~/.$file ]]; then
+            echo "Moving ~/.$file to ${olddir}..."
+            mv ~/.$file $olddir/
+        fi
         echo "Creating symlink to ${file}..."
         ln -s $dir/$file ~/.$file
     else
