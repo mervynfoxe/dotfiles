@@ -9,4 +9,5 @@ set tabstop=4             " tab spacing
 set expandtab             " use spaces instead of tabs
 colorscheme delek         " change color scheme
 "set mouse=a               " turn mouse functionality on
+set ruler                 " enable ruler
 
