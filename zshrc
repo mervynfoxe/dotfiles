@@ -109,6 +109,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fcount='ls -A1 | wc -l'
 alias gbs='git-branch-status'
+alias gla='git-pull-all'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
 alias gcamsg='git add --all; git commit -m'
@@ -205,6 +206,17 @@ function git-branch-status() {
         echo "$local (ahead $LEFT_AHEAD) | (behind $RIGHT_AHEAD) $remote"
     done
     return 0
+}
+
+# In a git repository, update all local branches
+function git-pull-all() {
+	cur_branch=$(git rev-parse --abbrev-ref HEAD)
+	for branch in $(git branch | tr -d " *"); do
+		git checkout $branch
+		git pull
+		echo ''
+	done
+	git checkout $cur_branch
 }
 
 
