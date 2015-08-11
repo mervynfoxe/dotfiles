@@ -17,6 +17,73 @@ else
     fi
 fi
 
+
+#
+# Functions
+#
+# Go up directory tree X times
+function up() {
+    counter="$@"
+    if [[ -z $counter ]]; then
+        counter=1
+    fi
+    if [ $counter -eq $counter 2> /dev/null ]; then
+        until [[ $counter -lt 1 ]]; do
+            cd ..
+            let counter-=1
+        done
+    else
+        echo "usage: up [NUMBER]"
+        return 1
+    fi
+}
+
+# Make and cd into a directory
+function mkcd() {
+    mkdir -p "$1" && cd "$1";
+}
+
+# cd into a directory and list its contents
+function cdls() {
+    cd "$1" && ls;
+}
+
+# Go up X directories and then list the new directory's contents
+function upls() {
+    up $1;
+    pwd;
+    ls;
+}
+
+# In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
+function git-branch-status() {
+    if [[ $1 != '-n' ]]; then
+        git remote update
+    fi
+    echo ''
+    git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads | \
+    while read local remote
+    do
+        [ -z "$remote" ] && continue
+        git rev-list --left-right ${local}...${remote} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
+        LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
+        RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
+        echo "$local (ahead $LEFT_AHEAD) | (behind $RIGHT_AHEAD) $remote"
+    done
+}
+
+# In a git repository, update all local branches
+function git-pull-all() {
+    cur_branch=$(git rev-parse --abbrev-ref HEAD)
+    for branch in $(git branch | tr -d " *"); do
+        git checkout $branch
+        git pull
+        echo ''
+    done
+    git checkout $cur_branch
+}
+
+
 #
 # General setup
 #
@@ -116,71 +183,6 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias apache2stop='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper stop'
     alias apache2restart='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper restart'
 fi
-
-#
-# Functions
-#
-# Go up directory tree X times
-function up() {
-	counter="$@"
-	if [[ -z $counter ]]; then
-		counter=1
-	fi
-	if [ $counter -eq $counter 2> /dev/null ]; then
-		until [[ $counter -lt 1 ]]; do
-			cd ..
-			let counter-=1
-		done
-	else
-		echo "usage: up [NUMBER]"
-		return 1
-	fi
-}
-
-# Make and cd into a directory
-function mkcd() {
-	mkdir -p "$1" && cd "$1";
-}
-
-# cd into a directory and list its contents
-function cdls() {
-	cd "$1" && ls;
-}
-
-# Go up X directories and then list the new directory's contents
-function upls() {
-	up $1;
-	pwd;
-	ls;
-}
-
-# In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
-function git-branch-status() {
-    if [[ $1 != '-n' ]]; then
-        git remote update
-    fi
-    echo ''
-    git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads | \
-    while read local remote
-    do
-        [ -z "$remote" ] && continue
-        git rev-list --left-right ${local}...${remote} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
-        LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
-        RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
-        echo "$local (ahead $LEFT_AHEAD) | (behind $RIGHT_AHEAD) $remote"
-    done
-}
-
-# In a git repository, update all local branches
-function git-pull-all() {
-    cur_branch=$(git rev-parse --abbrev-ref HEAD)
-    for branch in $(git branch | tr -d " *"); do
-        git checkout $branch
-        git pull
-        echo ''
-    done
-    git checkout $cur_branch
-}
 
 if [[ $CURRENT_OS == 'OS X' ]]; then
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
