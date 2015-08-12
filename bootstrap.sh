@@ -29,7 +29,7 @@ array_contains() {
 echo "Backing up existing dotfiles..."
 # Create dotfiles_old in homedir
 if [[ ! -d $olddir ]]; then
-    echo "Creating '${olddir}'...~"
+    echo "Creating '${olddir}'..."
     mkdir -p $olddir
 fi
 cd $dir
