@@ -8,13 +8,15 @@ OS_VERSION=''
 
 if [[ $UNAME == 'Darwin' ]]; then
     CURRENT_OS='OS X'
-else
+elif [[ $UNAME == 'Linux' ]]; then
     CURRENT_OS='Linux'
     if [[ -f /etc/lsb-release ]]; then
         source /etc/lsb-release
         DISTRO=$DISTRIB_ID
         OS_VERSION=$DISTRIB_RELEASE
     fi
+elif [[ $UNAME == CYGWIN_NT* ]]; then
+    CURRENT_OS='Cygwin'
 fi
 
 
