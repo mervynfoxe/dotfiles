@@ -11,7 +11,7 @@
     st = status
     co = checkout
     ci = commit
-    br = branch
+    br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
     conflicts = diff --name-only --diff-filter=U
     unstage = reset HEAD --
     last = log -1 HEAD
