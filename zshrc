@@ -49,7 +49,14 @@ function mkcd() {
 
 # cd into a directory and list its contents
 function cdls() {
-    cd "$1" && ls;
+    cd "$1"
+    if [[ $CURRENT_OS == 'Linux' ]]; then
+        ls -Aph --group-directories-first --color=auto
+    elif [[ $CURRENT_OS == 'OS X' ]]; then
+        ls -AGph
+    else
+        ls
+    fi
     return 0
 }
 
@@ -57,7 +64,13 @@ function cdls() {
 function upls() {
     up $1;
     pwd;
-    ls;
+    if [[ $CURRENT_OS == 'Linux' ]]; then
+        ls -Aph --group-directories-first --color=auto
+    elif [[ $CURRENT_OS == 'OS X' ]]; then
+        ls -AGph
+    else
+        ls
+    fi
     return 0
 }
 

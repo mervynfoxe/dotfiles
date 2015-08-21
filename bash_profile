@@ -47,14 +47,27 @@ function mkcd() {
 
 # cd into a directory and list its contents
 function cdls() {
-    cd "$1" && ls;
+    cd "$1"
+    if [[ $CURRENT_OS == 'Linux' ]]; then
+        ls -Aph --group-directories-first --color=auto
+    elif [[ $CURRENT_OS == 'OS X' ]]; then
+        ls -AGph
+    else
+        ls
+    fi
 }
 
 # Go up X directories and then list the new directory's contents
 function upls() {
     up $1;
     pwd;
-    ls;
+    if [[ $CURRENT_OS == 'Linux' ]]; then
+        ls -Aph --group-directories-first --color=auto
+    elif [[ $CURRENT_OS == 'OS X' ]]; then
+        ls -AGph
+    else
+        ls
+    fi
 }
 
 # In a git repository, print out branch status for all local branches, how many commits ahead/behind they are
