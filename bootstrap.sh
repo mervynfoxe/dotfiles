@@ -9,6 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles.bak             # old dotfiles backup directory
 ignore=( "icon.png"
+         ".gitmodules"
          "bootstrap.sh"
          "powerline-fonts" )      # items to ignore when making symlinks
 ##########
