@@ -146,9 +146,16 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle git-extras
 antigen bundle git-flow
+antigen bundle python
+antigen bundle sudo
+antigen bundle web-search
 if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle macports
     antigen bundle apache2-macports
+    antigen bundle osx
+fi
+if [[ $DISTRO == 'Ubuntu' ]]; then
+    antigen bundle command-not-found
 fi
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme agnoster
