@@ -47,7 +47,11 @@ function mkcd() {
 
 # cd into a directory and list its contents
 function cdls() {
-    cd "$1"
+    if [[ $1 == "" ]]; then
+        cd
+    else
+        cd "$1"
+    fi
     if [[ $CURRENT_OS == 'Linux' ]]; then
         ls -Aph --group-directories-first --color=auto
     elif [[ $CURRENT_OS == 'OS X' ]]; then
