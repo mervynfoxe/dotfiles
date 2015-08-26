@@ -57,10 +57,19 @@ echo "Initializing submodules..."
 git submodule init
 git submodule update --remote --recursive
 
-echo "Installing Powerline fonts..."
-./powerline-fonts/install.sh
+echo
+read -p "Install Powerline fonts now? [Y/n] " q_powerline
+case "${q_powerline}" in
+    [Yy]|"")
+        echo "Installing..."
+        ./powerline-fonts/install.sh
+        ;;
+    *)
+        echo "Fonts can be installed by running './powerline-fonts/install.sh'."
+        ;;
+esac
 
-echo "Done."
+echo -e "\nDone."
 # Determine shell that called this script
 parent=$(ps $PPID | tail -n 1 | awk "{print \$5}")
 if [[ $parent == "zsh" ]]; then
