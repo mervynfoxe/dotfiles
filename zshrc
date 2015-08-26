@@ -170,9 +170,9 @@ antigen apply
 # User configuration
 #
 if [[ $CURRENT_OS == 'Linux' ]]; then
-    export PATH="$PATH:/home/alex/bin"
+    export PATH="$HOME/bin:$PATH"
 elif [[ $CURRENT_OS == 'OS X' ]]; then
-    export PATH="/Users/alex/bin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+    export PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
     # Set up tab completion for Python 2
     export PYTHONSTARTUP=$HOME/.pythonrc.py
 fi
@@ -256,7 +256,7 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     zstyle ':completion:*' group-name ''
     zstyle ':completion:*' menu select=long
     zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-    zstyle :compinstall filename '/Users/alex/.zshrc'
+    zstyle :compinstall filename '$HOME/.zshrc'
 
     autoload -Uz compinit
     compinit
