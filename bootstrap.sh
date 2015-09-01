@@ -8,10 +8,15 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles.bak             # old dotfiles backup directory
-ignore=( "icon.png"
+# items to ignore when making symlinks
+ignore=(
+         ".git"
+         ".gitignore"
          ".gitmodules"
          "bootstrap.sh"
-         "powerline-fonts" )      # items to ignore when making symlinks
+         "icon.png"
+         "powerline-fonts"
+)
 ##########
 
 array_contains() {
