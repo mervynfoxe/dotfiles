@@ -212,6 +212,7 @@ alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push
 alias gcamsg='git add --all; git commit -m'
 alias gt='git tag'
 alias gprt='git rev-parse --show-toplevel'
+alias grupp='git remote update -p'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8000'
