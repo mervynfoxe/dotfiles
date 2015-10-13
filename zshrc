@@ -218,6 +218,7 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8000'
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias nethack='telnet nethack.alt.org'
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 if [[ $CURRENT_OS == 'Linux' ]]; then
     # Linux-specific aliases
     alias ls='ls -Ap --group-directories-first --color=auto'

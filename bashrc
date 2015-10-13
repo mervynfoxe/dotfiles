@@ -174,6 +174,7 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8000'
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias nethack='telnet nethack.alt.org'
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 # Git aliases
 alias g=git
 alias ga='git add'
