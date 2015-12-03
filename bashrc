@@ -319,6 +319,12 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias apache2start='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper start'
     alias apache2stop='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper stop'
     alias apache2restart='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper restart'
+    alias pc='sudo port clean --all installed'
+    alias pi='sudo port install https://github.com/robbyrussell/oh-my-zsh.git'
+    alias pio='port installed outdated'
+    alias psu='sudo port selfupdate'
+    alias puni='sudo port uninstall inactive'
+    alias puo='sudo port upgrade outdated'
 fi
 
 if [[ $CURRENT_OS == 'OS X' ]]; then
