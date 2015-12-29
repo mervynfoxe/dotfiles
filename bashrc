@@ -135,8 +135,8 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     #    start_agent;
     #fi
 
-    # Call .pythonrc when Python is started
-    export PYTHONSTARTUP=~/.pythonrc
+    # Call .pythonrc.py when Python is started
+    export PYTHONSTARTUP=~/.pythonrc.py
 
     export PATH="$HOME/bin:$PATH"
 elif [[ $CURRENT_OS == 'OS X' ]]; then
