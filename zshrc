@@ -172,7 +172,7 @@ antigen apply
 if [[ $CURRENT_OS == 'Linux' ]]; then
     export PATH="$HOME/bin:$PATH"
 elif [[ $CURRENT_OS == 'OS X' ]]; then
-    export PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
     # Set up tab completion for Python 2
     export PYTHONSTARTUP=$HOME/.pythonrc.py
 fi

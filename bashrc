@@ -141,7 +141,7 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     export PATH="$HOME/bin:$PATH"
 elif [[ $CURRENT_OS == 'OS X' ]]; then
     # Add MacPorts and apache/mysql to the PATH
-    export PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
 
     # Set up bash completion
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
