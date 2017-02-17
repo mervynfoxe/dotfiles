@@ -154,8 +154,6 @@ antigen bundle python
 antigen bundle sudo
 antigen bundle web-search
 if [[ $CURRENT_OS == 'OS X' ]]; then
-    antigen bundle macports
-    antigen bundle apache2-macports
     antigen bundle osx
 fi
 if [[ $DISTRO == 'Ubuntu' ]]; then
@@ -242,9 +240,9 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias hidehidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
     alias unmount='diskutil unmountDisk'
     alias rmdsstore='find . -name "*.DS_Store" -type f -delete'
-    alias apache2start='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper start'
-    alias apache2stop='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper stop'
-    alias apache2restart='sudo /opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper restart'
+    alias apache2start='sudo apachectl start'
+    alias apache2stop='sudo apachectl stop'
+    alias apache2restart='sudo apachectl restart'
     alias pio='port installed outdated'
 fi
 
