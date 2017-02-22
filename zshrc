@@ -8,6 +8,7 @@ OS_VERSION=''
 
 if [[ $UNAME == 'Darwin' ]]; then
     CURRENT_OS='OS X'
+    OS_VERSION=$(sw_vers -productVersion)
 elif [[ $UNAME == 'Linux' ]]; then
     CURRENT_OS='Linux'
     if [[ -f /etc/lsb-release ]]; then
