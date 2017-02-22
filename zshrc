@@ -155,6 +155,12 @@ antigen bundle sudo
 antigen bundle web-search
 if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle osx
+    if [[ $(which brew) != "brew not found" ]]; then
+        antigen bundle brew
+    fi
+    if [[ $(which port) != "port not found" ]]; then
+        antigen bundle macports
+    fi
 fi
 if [[ $DISTRO == 'Ubuntu' ]]; then
     antigen bundle command-not-found
@@ -243,7 +249,6 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias apache2start='sudo apachectl start'
     alias apache2stop='sudo apachectl stop'
     alias apache2restart='sudo apachectl restart'
-    alias pio='port installed outdated'
 fi
 
 
