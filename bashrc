@@ -319,6 +319,21 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias apache2start='sudo apachectl start'
     alias apache2stop='sudo apachectl stop'
     alias apache2restart='sudo apachectl restart'
+    if [[ $(which brew) != "" ]]; then
+        alias brews='brew list -1'
+        alias bubo='brew update && brew outdated'
+        alias bubc='brew upgrade && brew cleanup'
+        alias bubu='bubo && bubc'
+    fi
+    if [[ $(which port) != "" ]]; then
+        alias pc='sudo port clean --all installed'
+        alias pi='sudo port install $1'
+        alias pio='port installed outdated'
+        alias psu='sudo port selfupdate'
+        alias puo='sudo port upgrade outdated'
+        alias pup='psu && puo'
+        alias puni='sudo port uninstall inactive'
+    fi
 fi
 
 if [[ $CURRENT_OS == 'OS X' ]]; then
