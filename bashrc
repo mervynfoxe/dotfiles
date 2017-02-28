@@ -344,8 +344,11 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     if [[ $(which brew) != "" ]]; then
         alias brews='brew list -1'
         alias bubo='brew update && brew outdated'
+        alias bubov='brew update -v && brew outdated'
         alias bubc='brew upgrade && brew cleanup'
+        alias bubcv='brew upgrade -v && brew cleanup -v'
         alias bubu='bubo && bubc'
+        alias bubuv='bubov && bubcv'
     fi
     if [[ $(which port) != "" ]]; then
         alias pc='sudo port clean --all installed'

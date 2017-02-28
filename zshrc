@@ -158,6 +158,9 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle osx
     if [[ $(which brew) != "brew not found" ]]; then
         antigen bundle brew
+        alias bubov='brew update -v && brew outdated'
+        alias bubcv='brew upgrade -v && brew cleanup -v'
+        alias bubuv='bubov && bubcv'
     fi
     if [[ $(which port) != "port not found" ]]; then
         antigen bundle macports
