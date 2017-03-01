@@ -2,6 +2,7 @@
 # OS detection
 #
 UNAME=`uname`
+DEFAULT_USER=`whoami`
 CURRENT_OS='Linux'
 DISTRO=''
 OS_VERSION=''
@@ -189,7 +190,6 @@ fi
 # Fix for prompts
 PROMPT="$(echo -e "$PROMPT")
 $ "
-PROMPT2="%_> "
 
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
@@ -264,7 +264,6 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     # The following lines were added by compinstall
 
     zstyle ':completion:*' completer _expand _complete _ignored
-    zstyle ':completion:*' format '%d'
     zstyle ':completion:*' group-name ''
     zstyle ':completion:*' menu select=long
     zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
