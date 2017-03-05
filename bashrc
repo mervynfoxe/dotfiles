@@ -342,6 +342,7 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     alias apache2stop='sudo apachectl stop'
     alias apache2restart='sudo apachectl restart'
     if [[ $(which brew) != "" ]]; then
+        export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
         alias brews='brew list -1'
         alias bubo='brew update && brew outdated'
         alias bubov='brew update -v && brew outdated'
@@ -351,6 +352,7 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
         alias bubuv='bubov && bubcv'
     fi
     if [[ $(which port) != "" ]]; then
+        export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
         alias pc='sudo port clean --all installed'
         alias pi='sudo port install $1'
         alias pio='port installed outdated'

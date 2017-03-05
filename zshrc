@@ -158,12 +158,14 @@ antigen bundle web-search
 if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle osx
     if [[ $(which brew) != "brew not found" ]]; then
+        export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
         antigen bundle brew
         alias bubov='brew update -v && brew outdated'
         alias bubcv='brew upgrade -v && brew cleanup -v'
         alias bubuv='bubov && bubcv'
     fi
     if [[ $(which port) != "port not found" ]]; then
+        export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
         antigen bundle macports
     fi
 fi
