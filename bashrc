@@ -317,7 +317,7 @@ alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
 if [[ $CURRENT_OS == 'Linux' ]]; then
     # Linux-specific aliases
-    alias ls='ls -Ap --group-directories-first --color=auto'
+    alias ls='ls -AHp --group-directories-first --color=auto'
     alias ll='ls -Alph --group-directories-first --color=auto'
     alias ssh-start='sudo service ssh start'
     alias ssh-stop='sudo service ssh stop'
@@ -332,7 +332,7 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     alias adb-ifconfig='adb shell netcfg'
 elif [[ $CURRENT_OS == 'OS X' ]]; then
     # OSX-specific aliases
-    alias ls='ls -AGp'
+    alias ls='ls -AGHp'
     alias ll='ls -AGlph'
     alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
     alias hidehidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
