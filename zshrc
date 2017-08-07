@@ -240,6 +240,8 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     alias apache2start='sudo service apache2 start'
     alias apache2stop='sudo service apache2 stop'
     alias apache2restart='sudo service apache2 restart'
+    alias pbcopy='xclip -sel clip'
+    alias pbpaste='xclip -sel clip -o'
     # Aliases for ADB stuff
     alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
     alias adb-listapps='adb shell pm list packages'
