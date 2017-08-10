@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles.bak             # old dotfiles backup directory
+olddir=~/.dotfiles.bak            # old dotfiles backup directory
 # items to ignore when making symlinks
 ignore=(
          ".git"
