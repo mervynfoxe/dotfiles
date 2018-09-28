@@ -186,6 +186,8 @@ elif [[ $CURRENT_OS == 'OS X' ]]; then
     export PATH="$HOME/bin:$PATH"
     # Set up tab completion for Python 2
     export PYTHONSTARTUP=$HOME/.pythonrc.py
+    # Test for/enable iTerm2 integrations
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -279,6 +281,14 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+    # iTerm2 only: set touch bar status label to current git branch
+    $HOME/.iterm2/it2check && {
+        precmd() {
+            BR=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+            $HOME/.iterm2/it2setkeylabel set status ${BR:-_}
+        }
+    }
 fi
 
 if [[ -f $HOME/.zshrc.custom ]]; then
