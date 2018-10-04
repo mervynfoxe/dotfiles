@@ -260,6 +260,8 @@ alias glol="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cg
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias glum='git pull upstream master'
 alias gm='git merge'
+alias gmev='git merge --no-ff --no-commit'
+alias gmnf='git merge --no-ff'
 alias gmom='git merge origin/master'
 alias gmt='git mergetool --no-prompt'
 alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
