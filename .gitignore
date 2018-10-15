@@ -1,2 +1,2 @@
 # Ignore user-created config files
-*rc.custom
+*.custom
