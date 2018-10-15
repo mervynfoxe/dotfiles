@@ -198,6 +198,9 @@ $ "
 # Set wildcard (*) to affect dotfiles
 setopt dotglob
 
+# Disable '.' and '..' in tab completion
+zstyle ':completion:*' special-dirs false
+
 if [[ $CURRENT_OS == 'Linux' ]]; then
     # Set completion for ssh hosts
     zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
