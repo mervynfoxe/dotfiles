@@ -226,6 +226,7 @@ alias pu='pushd'
 alias gbi='git bisect'
 alias gbs='git-branch-status'
 alias gla='git-pull-all'
+alias glgnew="git log HEAD^..origin --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gmev='git merge --no-ff --no-commit'
 alias gmnf='git merge --no-ff'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''

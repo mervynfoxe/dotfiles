@@ -252,6 +252,7 @@ alias glg='git log --stat'
 alias glgg='git log --graph'
 alias glgga='git log --graph --decorate --all'
 alias glgm='git log --graph --max-count=10'
+alias glgnew="git log HEAD^..origin --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glgp='git log --stat -p'
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
