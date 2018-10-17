@@ -294,7 +294,7 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
     # iTerm2 only: set touch bar status label to current git branch
-    $HOME/.iterm2/it2check && {
+    test -d $HOME/.iterm2 && $HOME/.iterm2/it2check && {
         precmd() {
             BR=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
             $HOME/.iterm2/it2setkeylabel set status ${BR:-_}
