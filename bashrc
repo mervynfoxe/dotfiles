@@ -103,6 +103,17 @@ function git-pull-all() {
     git checkout $cur_branch
 }
 
+# In a git repository, check out a WIP branch and make a WIP commit
+function git-wip() {
+    branch="${1:-$(whoami)-wip}"
+
+    git branch "$branch"
+    git checkout "$branch"
+    git add -A
+    git rm $(git ls-files --deleted) 2> /dev/null
+    git commit --no-verify --no-gpg-sign -m "--wip--"
+}
+
 # Retrieve the current git branch
 function parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git:\1)/'
@@ -322,7 +333,7 @@ alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gup='git pull --rebase'
 alias gupv='git pull --rebase -v'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+alias gwip='git-wip'
 if [[ $CURRENT_OS == 'Linux' ]]; then
     # Linux-specific aliases
     alias ls='/bin/ls -AHp --group-directories-first --color=auto'

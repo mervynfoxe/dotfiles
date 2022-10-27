@@ -109,6 +109,17 @@ function git-pull-all() {
     git checkout $cur_branch
 }
 
+# In a git repository, check out a WIP branch and make a WIP commit
+function git-wip() {
+    branch="${1:-$(whoami)-wip}"
+
+    git branch "$branch"
+    git checkout "$branch"
+    git add -A
+    git rm $(git ls-files --deleted) 2> /dev/null
+    git commit --no-verify --no-gpg-sign -m "--wip--"
+}
+
 
 #
 # Configuration for oh-my-zsh
@@ -148,17 +159,16 @@ COMPLETION_WAITING_DOTS="true"
 #
 source $HOME/.antigen/antigen.zsh
 
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle git-extras
-antigen bundle git-flow
-antigen bundle python
-antigen bundle sudo
-antigen bundle web-search
 if [[ $CURRENT_OS == 'OS X' ]]; then
-    antigen bundle osx
-    if [[ $(which brew) != "brew not found" ]]; then
+    # Set PATH, MANPATH, etc., for Homebrew.
+    if [ -d /opt/homebrew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -d $HOME/homebrew ]; then
+        export PATH="$HOME/homebrew/bin:/usr/local/homebrew:$PATH"
+    fi
+    if type brew &>/dev/null; then
         export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+        export FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
         antigen bundle brew
         alias bubov='brew update -v && brew outdated'
         alias bubcv='brew upgrade -v && brew cleanup -v'
@@ -168,11 +178,21 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
         export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
         antigen bundle macports
     fi
+    antigen bundle osx
 fi
 if [[ $DISTRO == 'Ubuntu' ]]; then
     antigen bundle command-not-found
 fi
+antigen use oh-my-zsh
+antigen bundle git
+antigen bundle git-extras
+antigen bundle git-flow
+antigen bundle python
+antigen bundle pyenv
+antigen bundle sudo
+antigen bundle web-search
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
 antigen theme agnoster
 antigen apply
 
@@ -240,6 +260,7 @@ alias grft='git show-ref --abbrev=7 --tags'
 alias grupp='git remote update -p'
 alias gstau='git stash push -u'
 alias gt='git tag'
+alias gwip='git-wip'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias servethisphp='php -S localhost:8888'
