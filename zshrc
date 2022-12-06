@@ -182,6 +182,7 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle osx
 fi
 if [[ $DISTRO == 'Ubuntu' ]]; then
+    antigen bundle ubuntu
     antigen bundle command-not-found
 fi
 antigen use oh-my-zsh
