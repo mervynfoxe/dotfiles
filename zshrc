@@ -185,6 +185,9 @@ if [[ $DISTRO == 'Ubuntu' ]]; then
     antigen bundle ubuntu
     antigen bundle command-not-found
 fi
+if type lando &>/dev/null; then
+    antigen bundle lando
+fi
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle git-extras
