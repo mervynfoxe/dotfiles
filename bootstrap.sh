@@ -4,9 +4,11 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
+dir="$SCRIPT_DIR"                 # current dotfiles directory
 olddir=~/.dotfiles.bak            # old dotfiles backup directory
 # items to ignore when making symlinks
 ignore=(
