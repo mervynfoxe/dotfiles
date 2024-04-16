@@ -64,17 +64,20 @@ echo "Initializing submodules..."
 git submodule init
 git submodule update --remote --recursive
 
-echo
-read -p "Install Powerline fonts now? [Y/n] " q_powerline
-case "${q_powerline}" in
-    [Yy]|"")
-        echo "Installing..."
-        ./powerline-fonts/install.sh
-        ;;
-    *)
-        echo "Fonts can be installed by running './powerline-fonts/install.sh'."
-        ;;
-esac
+# Don't bother with fonts in Gitpod
+if [[ -e /ide/bin/gitpod-code && -n $GITPOD_REPO_ROOT ]]; then
+    echo
+    read -p "Install Powerline fonts now? [Y/n] " q_powerline
+    case "${q_powerline}" in
+        [Yy]|"")
+            echo "Installing..."
+            ./powerline-fonts/install.sh
+            ;;
+        *)
+            echo "Fonts can be installed by running './powerline-fonts/install.sh'."
+            ;;
+    esac
+fi
 
 echo -e "\nDone."
 # Determine shell that called this script

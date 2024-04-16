@@ -119,10 +119,20 @@ function parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git:\1)/'
 }
 
+# Determine if we are currently in a gitpod workspace
+function is::gitpod() {
+    test -e /ide/bin/gitpod-code && test -v GITPOD_REPO_ROOT
+}
+
 
 #
 # General setup
 #
+if is::gitpod; then
+    # Use Gitpod's dotfile as a starting point
+    source ~/.dotfiles.bak/.bashrc
+fi
+
 if [[ $CURRENT_OS == 'Linux' ]]; then
     # Set up SSH environment
     SSH_ENV=$HOME/.ssh/environment
@@ -387,6 +397,11 @@ fi
 if [[ $CURRENT_OS == 'OS X' ]]; then
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
+
+if is::gitpod; then
+    # Remove conflict with gitpod's executable
+    unalias gp
 fi
 
 if [[ -f $HOME/.bashrc.custom ]]; then
