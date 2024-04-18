@@ -3,3 +3,8 @@ export PATH="$HOME/bin:$PATH"
 # Call .pythonrc.py when Python is started
 # Set up tab completion for Python 2
 export PYTHONSTARTUP=~/.pythonrc.py
+
+if is::gitpod && [[ -e $HOME/.dotfiles.bak/.gitconfig ]]; then
+    # Pull Gitpod's default .gitconfig into a custom file
+    cp $HOME/.dotfiles.bak/.gitconfig $HOME/.gitconfig.custom
+fi

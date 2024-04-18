@@ -117,6 +117,11 @@ alias freq='cut -f2 -d";" ~/.zsh_history | cut -f1 -d" " | sort | uniq -c | sort
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
 
+if is::gitpod; then
+    # Remove conflict with gitpod's executable
+    unalias gp
+fi
+
 
 #
 # Everything else
