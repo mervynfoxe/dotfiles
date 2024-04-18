@@ -12,6 +12,7 @@ fi
 #
 # Configuration for oh-my-zsh
 #
+
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
@@ -128,11 +129,6 @@ fi
 #
 # Aliases
 #
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
-alias path='echo -e ${PATH//:/\\n}'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fcount='ls -A1 | wc -l'
 alias freq='cut -f2 -d";" ~/.zsh_history | cut -f1 -d" " | sort | uniq -c | sort -nr | head -n 30'
 alias po='popd'
 alias pu='pushd'
@@ -153,42 +149,6 @@ alias grft='git show-ref --abbrev=7 --tags'
 alias grupp='git remote update -p'
 alias gstau='git stash push -u'
 alias gt='git tag'
-alias gwip='git-wip'
-alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
-alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
-alias servethisphp='php -S localhost:8888'
-alias pycclean='find . -name "*.pyc" -exec rm {} \;'
-alias nethack='telnet nethack.alt.org'
-alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
-if [[ $CURRENT_OS == 'Linux' ]]; then
-    # Linux-specific aliases
-    alias ls='/bin/ls -AHp --group-directories-first --color=auto'
-    alias ll='/bin/ls -Alph --group-directories-first --color=auto'
-    alias ssh-start='sudo service ssh start'
-    alias ssh-stop='sudo service ssh stop'
-    alias ssh-rs='sudo service ssh restart'
-    alias apache2start='sudo service apache2 start'
-    alias apache2stop='sudo service apache2 stop'
-    alias apache2restart='sudo service apache2 restart'
-    alias pbcopy='xclip -sel clip'
-    alias pbpaste='xclip -sel clip -o'
-    # Aliases for ADB stuff
-    alias adb-uninstall='adb shell am start -a android.intent.action.DELETE -d'
-    alias adb-listapps='adb shell pm list packages'
-    alias adb-tcpip='adb tcpip 5555'
-    alias adb-ifconfig='adb shell netcfg'
-elif [[ $CURRENT_OS == 'OS X' ]]; then
-    # OSX-specific aliases
-    alias ls='/bin/ls -AGHp'
-    alias ll='/bin/ls -AGlph'
-    alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-    alias hidehidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-    alias unmount='diskutil unmountDisk'
-    alias rmdsstore='find . -name "*.DS_Store" -type f -delete'
-    alias apache2start='sudo apachectl start'
-    alias apache2stop='sudo apachectl stop'
-    alias apache2restart='sudo apachectl restart'
-fi
 
 
 #
