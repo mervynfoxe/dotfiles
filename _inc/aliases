@@ -41,7 +41,7 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     alias adb-listapps='adb shell pm list packages'
     alias adb-tcpip='adb tcpip 5555'
     alias adb-ifconfig='adb shell netcfg'
-elif [[ $CURRENT_OS == 'OS X' ]]; then
+elif [[ $CURRENT_OS == 'macOS' ]]; then
     alias ls='/bin/ls -AGHp'
     alias ll='/bin/ls -AGlph'
     alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'

@@ -8,7 +8,7 @@ DISTRO=''
 OS_VERSION=''
 
 if [[ $UNAME == 'Darwin' ]]; then
-    CURRENT_OS='OS X'
+    CURRENT_OS='macOS'
     OS_VERSION=$(sw_vers -productVersion)
 elif [[ $UNAME == 'Linux' ]]; then
     CURRENT_OS='Linux'
@@ -29,3 +29,7 @@ inc=(
 for f in "${inc[@]}"; do
 	test -e "$DOTFILES_DIR/_inc/$f" && source "$DOTFILES_DIR/_inc/$f"
 done
+
+# Pull in global and OS-specific config
+source "$DOTFILES_DIR/_inc/config"
+test -e "$DOTFILES_DIR/_inc/config_$CURRENT_OS" && source "$DOTFILES_DIR/_inc/config_$CURRENT_OS"

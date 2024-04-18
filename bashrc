@@ -18,37 +18,7 @@ if is::gitpod && [[ -e $HOME/.dotfiles.bak/.bashrc ]]; then
     source $HOME/.dotfiles.bak/.bashrc
 fi
 
-if [[ $CURRENT_OS == 'Linux' ]]; then
-    # Set up SSH environment
-    SSH_ENV=$HOME/.ssh/environment
-
-    # start the ssh-agent
-    function start_agent {
-        echo "Initializing new SSH agent..."
-        # spawn ssh-agent
-        /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-        echo succeeded
-        chmod 600 "${SSH_ENV}"
-        . "${SSH_ENV}" > /dev/null
-        /usr/bin/ssh-add
-    }
-
-    #if [ -f "${SSH_ENV}" ]; then
-    #     . "${SSH_ENV}" > /dev/null
-    #     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-    #        start_agent;
-    #    }
-    #else
-    #    start_agent;
-    #fi
-
-    # Call .pythonrc.py when Python is started
-    export PYTHONSTARTUP=~/.pythonrc.py
-
-    export PATH="$HOME/bin:$PATH"
-elif [[ $CURRENT_OS == 'OS X' ]]; then
-    export PATH="$HOME/bin:$PATH"
-
+if [[ $CURRENT_OS == 'macOS' ]]; then
     # Set up bash completion
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
         . /opt/local/etc/profile.d/bash_completion.sh
@@ -219,11 +189,6 @@ alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gup='git pull --rebase'
 alias gupv='git pull --rebase -v'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-
-if [[ $CURRENT_OS == 'OS X' ]]; then
-    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-fi
 
 if is::gitpod; then
     # Remove conflict with gitpod's executable

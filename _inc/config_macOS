@@ -1,0 +1,27 @@
+# Set PATH, MANPATH, etc., for Homebrew/MacPorts
+if [ -d /opt/homebrew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d $HOME/homebrew ]; then
+    export PATH="$HOME/homebrew/bin:/usr/local/homebrew:$PATH"
+fi
+if type brew &>/dev/null; then
+    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+    export FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
+fi
+if type port &>/dev/null; then
+    export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/lib/mysql55/bin:/opt/local/apache2/bin:$PATH"
+fi
+
+# Test for/enable iTerm2 integrations
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# iTerm2 only: set touch bar status label to current git branch
+test -d $HOME/.iterm2 && $HOME/.iterm2/it2check && {
+    precmd() {
+        BR=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+        $HOME/.iterm2/it2setkeylabel set status ${BR:-_}
+    }
+}

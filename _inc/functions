@@ -35,7 +35,7 @@ function cdls() {
     fi
     if [[ $CURRENT_OS == 'Linux' ]]; then
         ls -Ap --group-directories-first --color=auto
-    elif [[ $CURRENT_OS == 'OS X' ]]; then
+    elif [[ $CURRENT_OS == 'macOS' ]]; then
         ls -AGp
     else
         ls
@@ -49,7 +49,7 @@ function upls() {
     pwd;
     if [[ $CURRENT_OS == 'Linux' ]]; then
         ls -Ap --group-directories-first --color=auto
-    elif [[ $CURRENT_OS == 'OS X' ]]; then
+    elif [[ $CURRENT_OS == 'macOS' ]]; then
         ls -AGp
     else
         ls
