@@ -114,21 +114,8 @@ fi
 test -e "$DOTFILES_DIR/_inc/aliases" && source "$DOTFILES_DIR/_inc/aliases"
 
 alias freq='cut -f2 -d";" ~/.zsh_history | cut -f1 -d" " | sort | uniq -c | sort -nr | head -n 30'
-alias gbi='git bisect'
-alias gcamsg='git add --all; git commit -m'
-alias glga='git log --graph --full-history --color --pretty=format:"%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%ar) %x1b[34m%x1b[1m<%an>%x1b[0m" --abbrev-commit --date=relative'
-alias glgnew="git log HEAD^..origin --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gmev='git merge --no-ff --no-commit'
-alias gmfo='git merge --ff-only'
-alias gmnf='git merge --no-ff'
 alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; echo'"'"''
 alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing to %..."; git push --all %; git push --tags %; echo'"'"''
-alias gprt='git rev-parse --show-toplevel'
-alias grfa='git show-ref --abbrev=7'
-alias grft='git show-ref --abbrev=7 --tags'
-alias grupp='git remote update -p'
-alias gstau='git stash push -u'
-alias gt='git tag'
 
 
 #
