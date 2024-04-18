@@ -1,10 +1,10 @@
-SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+DOTFILES_DIR=$( cd -- "$( dirname -- "$(readlink -f "${BASH_SOURCE[0]}" || ${BASH_SOURCE[0]})" )" &> /dev/null && pwd )
 
 if [[ -e $HOME/.globalrc ]]; then
     source $HOME/.globalrc
 else
     echo "$HOME/.globalrc not found, unable to continue."
-    echo "Please ensure $SCRIPT_DIR/globalrc is properly linked to load required functions and config."
+    echo "Please ensure $DOTFILES_DIR/globalrc is properly linked to load required functions and config."
     return 1
 fi
 
