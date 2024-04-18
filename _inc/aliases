@@ -16,7 +16,12 @@ alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias nethack='telnet nethack.alt.org'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
+alias po='popd'
+alias pu='pushd'
+
 # Git aliases
+alias gbs='git-branch-status'
+alias gla='git-pull-all'
 alias gwip='git-wip'
 
 # OS-specific aliases

@@ -68,6 +68,10 @@ shopt -s dotglob
 #
 # Aliases
 #
+
+# Pull in global alias overrides
+test -e "$DOTFILES_DIR/_inc/aliases" && source "$DOTFILES_DIR/_inc/aliases"
+
 alias please='sudo $(history -p !!)'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 # Git aliases
@@ -84,7 +88,6 @@ alias gbi='git bisect'
 alias gbl='git blame -b -w'
 alias gbnm='git branch --no-merged'
 alias gbr='git branch --remote'
-alias gbs='git-branch-status'
 alias gbsb='git bisect bad'
 alias gbsg='git bisect good'
 alias gbsr='git bisect reset'
@@ -142,7 +145,6 @@ alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
 alias gk='\gitk --all --branches'
 alias gke='\gitk --all $(git log -g --pretty=%h)'
 alias gl='git pull'
-alias gla='git-pull-all'
 alias glg='git log --stat'
 alias glga='git log --graph --full-history --color --pretty=format:"%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%ar) %x1b[34m%x1b[1m<%an>%x1b[0m" --abbrev-commit --date=relative'
 alias glgg='git log --graph'

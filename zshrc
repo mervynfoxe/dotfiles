@@ -129,13 +129,13 @@ fi
 #
 # Aliases
 #
+
+# Pull in global alias overrides
+test -e "$DOTFILES_DIR/_inc/aliases" && source "$DOTFILES_DIR/_inc/aliases"
+
 alias freq='cut -f2 -d";" ~/.zsh_history | cut -f1 -d" " | sort | uniq -c | sort -nr | head -n 30'
-alias po='popd'
-alias pu='pushd'
 alias gbi='git bisect'
-alias gbs='git-branch-status'
 alias gcamsg='git add --all; git commit -m'
-alias gla='git-pull-all'
 alias glga='git log --graph --full-history --color --pretty=format:"%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%ar) %x1b[34m%x1b[1m<%an>%x1b[0m" --abbrev-commit --date=relative'
 alias glgnew="git log HEAD^..origin --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gmev='git merge --no-ff --no-commit'

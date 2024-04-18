@@ -24,7 +24,7 @@ fi
 # Pull in global include files
 inc=(
     functions
-    aliases
+    # aliases
 )
 for f in "${inc[@]}"; do
 	test -e "$DOTFILES_DIR/_inc/$f" && source "$DOTFILES_DIR/_inc/$f"
