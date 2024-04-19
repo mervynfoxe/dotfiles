@@ -64,8 +64,8 @@ echo "Initializing submodules..."
 git submodule init
 git submodule update --remote --recursive
 
-# Don't bother with fonts in Gitpod
-if [[ -e /ide/bin/gitpod-code && -n $GITPOD_REPO_ROOT ]]; then
+if [[ ! -e /ide/bin/gitpod-code && -z $GITPOD_REPO_ROOT ]]; then
+    # Don't bother with fonts in Gitpod
     echo
     read -p "Install Powerline fonts now? [Y/n] " q_powerline
     case "${q_powerline}" in
@@ -77,6 +77,11 @@ if [[ -e /ide/bin/gitpod-code && -n $GITPOD_REPO_ROOT ]]; then
             echo "Fonts can be installed by running './powerline-fonts/install.sh'."
             ;;
     esac
+else
+    # Bring original gitconfig back as it contains required settings in Gitpod workspaces
+    if [[ -e $olddir/.gitconfig ]]; then
+        cat $olddir/.gitconfig >> ~/.gitconfig.custom
+    fi
 fi
 
 echo -e "\nDone."
