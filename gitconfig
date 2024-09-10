@@ -3,6 +3,8 @@
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim
+[log]
+	showSignature = true
 [alias]
     st = status
     co = checkout
@@ -12,11 +14,11 @@
     unstage = reset HEAD --
     last = log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
-    lg = log --graph --full-history --color --pretty=format:'%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%ar) %x1b[34m%x1b[1m<%an>%x1b[0m' --abbrev-commit --date=relative
-    ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --graph --full-history --no-show-signature --color --pretty=format:'%x1b[31m%h%x09%x1b[33m%d%x1b[0m%x20%s %x1b[32m(%ar) %x1b[34m%x1b[1m[%G?] <%an>%x1b[0m' --abbrev-commit --date=relative
+    ls = log --no-show-signature --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%G?] <%an>%Creset' --abbrev-commit
     changes = diff --name-status -r
     diffstat = diff --stat -r
-    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    whois = "!sh -c 'git log -i -1 --no-show-signature --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
     whatis = show -s --pretty='tformat:%x1b[33m%h %x1b[0m(%s, %x1b[32m%ad%x1b[0m)' -p --date=short
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f"
 [color]
