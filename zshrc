@@ -68,9 +68,9 @@ if type lando &>/dev/null; then
 fi
 
 antigen use oh-my-zsh
+antigen bundle git-flow
 antigen bundle git
 antigen bundle git-extras
-antigen bundle git-flow
 antigen bundle python
 antigen bundle pyenv
 antigen bundle sudo

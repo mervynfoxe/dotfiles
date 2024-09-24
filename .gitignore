@@ -1,2 +1,8 @@
+# Ignore dev files
+.vscode/
+.idea/
+.sublime-project
+.sublime-workspace
+
 # Ignore user-created config files
 *.custom
