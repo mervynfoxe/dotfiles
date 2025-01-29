@@ -31,5 +31,5 @@ for f in "${inc[@]}"; do
 done
 
 # Pull in global and OS-specific config
-source "$DOTFILES_DIR/_inc/config"
 test -e "$DOTFILES_DIR/_inc/config_$CURRENT_OS" && source "$DOTFILES_DIR/_inc/config_$CURRENT_OS"
+source "$DOTFILES_DIR/_inc/config"
