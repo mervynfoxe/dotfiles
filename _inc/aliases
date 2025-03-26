@@ -21,6 +21,9 @@ alias pu='pushd'
 
 # Git aliases
 alias gbi='git bisect'
+alias gbam='git branch -a --merged'
+alias gbm='git branch --merged'
+alias gbmv='git branch --move'
 alias gbs='git-branch-status'
 alias gcamsg='git add --all; git commit -m'
 alias gla='git-pull-all'
