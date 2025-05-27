@@ -66,6 +66,10 @@ fi
 if type lando &>/dev/null; then
     antigen bundle lando
 fi
+if type docker &>/dev/null; then
+    #antigen bundle docker # completions seem to be broken
+    antigen bundle docker-compose
+fi
 
 antigen use oh-my-zsh
 antigen bundle git-flow
