@@ -1,3 +1,7 @@
+let mapleader = ";"
+map <leader>n :bnext<cr>
+map <leader>p :bprevious<cr>
+
 set t_Co=256                    " enable 256-color mode.
 syntax enable                   " enable syntax highlighting.
 "set number                      " show line numbers
