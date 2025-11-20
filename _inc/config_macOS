@@ -1,3 +1,14 @@
+# Load any custom config/settings
+if [[ -f $DOTFILES_DIR/_inc/config_macOS.custom ]]; then
+    source $DOTFILES_DIR/_inc/config_macOS.custom
+fi
+
+# Set config defaults
+# Run iTerm2 shell integration scripts
+DOTFILES_CONFIG_MACOS_ITERM_SHELL_INTEGRATION="${DOTFILES_CONFIG_MACOS_ITERM_SHELL_INTEGRATION:-1}"
+# In iTerm2, enable displaying the current git branch on MacBook status bars
+DOTFILES_CONFIG_MACOS_ITERM_TOUCHBAR="${DOTFILES_CONFIG_MACOS_ITERM_TOUCHBAR:-1}"
+
 # Set PATH, MANPATH, etc., for Homebrew/MacPorts
 if [ -d /opt/homebrew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -13,13 +24,13 @@ if type port &>/dev/null; then
 fi
 
 # Test for/enable iTerm2 integrations
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e $DOTFILES_CONFIG_MACOS_ITERM_SHELL_INTEGRATION && "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # iTerm2 only: set touch bar status label to current git branch
-test -d $HOME/.iterm2 && $HOME/.iterm2/it2check && {
+test -d $DOTFILES_CONFIG_MACOS_ITERM_TOUCHBAR && $HOME/.iterm2 && $HOME/.iterm2/it2check && {
     precmd() {
         BR=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
         $HOME/.iterm2/it2setkeylabel set status ${BR:-_}
