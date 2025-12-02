@@ -21,6 +21,20 @@
     whois = "!sh -c 'git log -i -1 --no-show-signature --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
     whatis = show -s --pretty='tformat:%x1b[33m%h %x1b[0m(%s, %x1b[32m%ad%x1b[0m)' -p --date=short
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f"
+    trailer-add = "!f(){ GIT_EDITOR=\"git interpret-trailers --trailer='$1: $2' --in-place\" git commit --amend; }; f"
+    trailer-add-me = "!f() { git trailer-add \"$1\" \"$(git config user.name) <$(git config user.email)>\"; }; f"
+    signed-off-by = "!git trailer-add Signed-off-by"
+    signed-off-by-me = "!git trailer-add-me Signed-off-by"
+    co-authored-by = "!git trailer-add Co-authored-by"
+    co-authored-by-me = "!git trailer-add-me Co-authored-by"
+    tested-by = "!git trailer-add Tested-by"
+    tested-by-me = "!git trailer-add-me Tested-by"
+    reported-by = "!git trailer-add Reported-by"
+    reported-by-me = "!git trailer-add-me Reported-by"
+    reviewed-by = "!git trailer-add Reviewed-by"
+    reviewed-by-me = "!git trailer-add-me Reviewed-by"
+    acked-by = "!git trailer-add Acked-by"
+    acked-by-me = "!git trailer-add-me Acked-by"
 [color]
     ui = auto
     status = auto
