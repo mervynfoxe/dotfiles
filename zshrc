@@ -118,10 +118,6 @@ fi
 test -e "$DOTFILES_DIR/_inc/aliases" && source "$DOTFILES_DIR/_inc/aliases"
 
 alias freq='cut -f2 -d";" ~/.zsh_history | cut -f1 -d" " | sort | uniq -c | sort -nr | head -n 30'
-alias gpa='git remote | xargs -I % sh -c '"'"'echo "Pushing $(git rev-parse --abbrev-ref HEAD) to %..."; git push % $(git rev-parse --abbrev-ref HEAD); echo'"'"''
-alias gpaa='git remote | xargs -I % sh -c '"'"'echo "Pushing all branches to %..."; git push --all %; echo'"'"''
-alias gpaat='git remote | xargs -I % sh -c '"'"'echo "Pushing all branches and tags to %..."; git push --all %; git push --tags %; echo'"'"''
-alias gref='git show -s --pretty=reference --no-show-signature'
 
 if is::gitpod; then
     # Remove conflict with gitpod's executable
